@@ -6,6 +6,14 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import AuthProvider, { useAuth } from './utilities/auth/AuthProvider.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import ProtectedRoute from './utilities/auth/ProtectedRoute.jsx';
+import Layout from './components/Layout.jsx';
+
+const pagesWithLayout = [
+  {
+    path: '/',
+    element: <App />,
+  },
+];
 
 const router = createBrowserRouter([
   {
@@ -17,12 +25,13 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        index: true,
+        path: '/',
         element: (
           <ProtectedRoute>
-            <App />
+            <Layout />
           </ProtectedRoute>
         ),
+        children: pagesWithLayout,
       },
       {
         path: 'login',
