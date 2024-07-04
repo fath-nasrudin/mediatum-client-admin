@@ -39,7 +39,6 @@ function LoginForm() {
 
   const onLoginClicked = async (e) => {
     e.preventDefault();
-    console.log({ inputs });
 
     // reset state for every new login request
     setError(null);
