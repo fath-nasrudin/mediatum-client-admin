@@ -54,8 +54,16 @@ function AuthProvider({ children }) {
     localStorage.setItem('access_token', accessToken);
     return { error: null };
   }
+
+  function logoutAction() {
+    setUser('');
+    setToken('');
+    localStorage.removeItem('access_token');
+    console.log('logout success');
+  }
+
   return (
-    <AuthContext.Provider value={{ user, loginAction }}>
+    <AuthContext.Provider value={{ user, loginAction, logoutAction }}>
       {children}
     </AuthContext.Provider>
   );
