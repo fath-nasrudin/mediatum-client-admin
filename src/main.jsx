@@ -24,11 +24,11 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      {
+        path: 'login',
+        element: <LoginPage />,
+      },
     ],
-  },
-  {
-    path: 'login',
-    element: <LoginPage />,
   },
 ]);
 
