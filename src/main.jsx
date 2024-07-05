@@ -11,6 +11,7 @@ import ArticleListPage from './features/articlelist/components/ArticleListPage.j
 import ArticleEditPage from './features/articlelist/components/ArticleEditPage.jsx';
 import ArticleAddPage from './features/articlelist/components/ArticleAddPage.jsx';
 import ArticleDeletePage from './features/articlelist/components/ArticleDeletePage.jsx';
+import ErrorBoundary from './features/error/ErrorBoundary.jsx';
 
 const pagesWithLayout = [
   {
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
         <Outlet />
       </AuthProvider>
     ),
+    errorElement: <ErrorBoundary />,
     children: [
       {
         path: '/',
