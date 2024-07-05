@@ -2,7 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  Navigate,
+} from 'react-router-dom';
 import AuthProvider, { useAuth } from './features/auth/AuthProvider.jsx';
 import LoginPage from './features/auth/components/LoginPage.jsx';
 import ProtectedRoute from './features/auth/ProtectedRoute.jsx';
@@ -16,7 +21,7 @@ import ErrorBoundary from './features/error/ErrorBoundary.jsx';
 const pagesWithLayout = [
   {
     path: '/',
-    element: <App />,
+    element: <Navigate to="/articles" />,
   },
   {
     path: 'articles',
