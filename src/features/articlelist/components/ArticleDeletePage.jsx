@@ -7,7 +7,7 @@ const fetchDeleteArticle = async (id, options = {}) => {
   try {
     console.log('deleting article...');
     const response = await fetch(
-      `${'http://localhost:3000'}/admin/articles/${id}`,
+      `${import.meta.env.VITE_API_SERVER}/admin/articles/${id}`,
       {
         headers: {
           'Content-Type': 'application/json',

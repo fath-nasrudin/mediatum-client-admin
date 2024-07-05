@@ -6,13 +6,16 @@ const getArticlelist = async (options = {}) => {
   const { token } = options;
   try {
     console.log('try to fetch article list...');
-    const response = await fetch(`${'http://localhost:3000'}/admin/articles`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      credentials: 'include',
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_SERVER}/admin/articles`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        credentials: 'include',
+      }
+    );
 
     if (!response.ok) {
       console.log('response not ok');
@@ -36,7 +39,7 @@ const switchPublishStatus = async (id, data, options = {}) => {
   try {
     console.log('switching publish status...');
     const response = await fetch(
-      `${'http://localhost:3000'}/admin/articles/${id}`,
+      `${import.meta.env.VITE_API_SERVER}/admin/articles/${id}`,
       {
         headers: {
           'Content-Type': 'application/json',

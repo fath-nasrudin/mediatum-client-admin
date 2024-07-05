@@ -7,14 +7,17 @@ const AuthContext = createContext();
 const login = async (data) => {
   try {
     console.log('try to login...');
-    const response = await fetch(`${'http://localhost:3000'}/auth/login`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      method: 'post',
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_SERVER}/auth/login`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        method: 'post',
+        body: JSON.stringify(data),
+      }
+    );
 
     if (!response.ok) {
       console.log('response not ok');
@@ -55,7 +58,7 @@ const refreshToken = async () => {
   try {
     console.log('try to refresh token...');
     const response = await fetch(
-      `${'http://localhost:3000'}/auth/refresh-token`,
+      `${import.meta.env.VITE_API_SERVER}/auth/refresh-token`,
       {
         credentials: 'include',
       }

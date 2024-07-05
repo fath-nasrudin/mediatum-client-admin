@@ -8,7 +8,7 @@ const getArticleItem = async (articleId, options = {}) => {
   try {
     console.log('try to fetch article item...');
     const response = await fetch(
-      `${'http://localhost:3000'}/admin/articles/${articleId}`,
+      `${import.meta.env.VITE_API_SERVER}/admin/articles/${articleId}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ const editArticle = async (id, data, options = {}) => {
   try {
     console.log('try to edit article...');
     const response = await fetch(
-      `${'http://localhost:3000'}/admin/articles/${id}`,
+      `${import.meta.env.VITE_API_SERVER}/admin/articles/${id}`,
       {
         credentials: 'include',
         method: 'put',

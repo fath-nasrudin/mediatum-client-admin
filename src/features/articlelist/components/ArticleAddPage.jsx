@@ -7,15 +7,18 @@ const fetchPostArticle = async (data, options = {}) => {
   const { token } = options;
   try {
     console.log('try to add article...');
-    const response = await fetch(`${'http://localhost:3000'}/admin/articles`, {
-      credentials: 'include',
-      method: 'post',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_SERVER}/admin/articles`,
+      {
+        credentials: 'include',
+        method: 'post',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     if (!response.ok) {
       console.log('add article response not ok');
