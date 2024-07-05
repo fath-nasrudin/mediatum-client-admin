@@ -31,14 +31,50 @@ const getArticlelist = async (options = {}) => {
   }
 };
 
+const switchPublishStatus = async (id, data, options = {}) => {
+  const { token } = options;
+  try {
+    console.log('switching publish status...');
+    const response = await fetch(
+      `${'http://localhost:3000'}/admin/articles/${id}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+        credentials: 'include',
+        method: 'put',
+      }
+    );
+
+    if (!response.ok) {
+      console.log('response not ok');
+      const resultError = await response.json();
+      console.log({ resultError });
+      throw new Error(resultError.message);
+    }
+
+    console.log('update publish status success');
+    const result = await response.json();
+    console.log({ result });
+    return { error: null, result: result };
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return { error, result: null };
+  }
+};
+
 function ArticleListPage() {
   const [articleList, setArticleList] = useState(null);
   const [error, setError] = useState(null);
   const { token } = useAuth();
-  console.log({ token });
+  const [isArticleListValid, setIsArticleListValid] = useState(false);
 
   // fetch articlelist
   useEffect(() => {
+    if (isArticleListValid) return;
+
     setError(null);
     const fetchArticlelist = async () => {
       const { result, error } = await getArticlelist({ token });
@@ -46,13 +82,25 @@ function ArticleListPage() {
       if (error) setError(error);
 
       setArticleList(result);
+      setIsArticleListValid(true);
     };
     fetchArticlelist();
-  }, []);
+  }, [isArticleListValid]);
 
   // create articlename
   const generateArticleName = (title, id) => {
     return title.split(' ').join('-') + '-' + id;
+  };
+
+  const handleSwitchPublishStatus = async (id, is_published) => {
+    const { error, result } = await switchPublishStatus(
+      id,
+      { is_published: !is_published },
+      { token }
+    );
+    if (error) return setError(error);
+
+    setIsArticleListValid(false);
   };
 
   return (
@@ -96,13 +144,29 @@ function ArticleListPage() {
               </td>
               <td>
                 {articleItem.is_published ? (
-                  <p className="ring-1 ring-gray-500 px-2 rounded-md flex justify-center ">
+                  <button
+                    className="ring-1 ring-gray-500 px-2 rounded-md flex justify-center "
+                    onClick={() =>
+                      handleSwitchPublishStatus(
+                        articleItem._id,
+                        articleItem.is_published
+                      )
+                    }
+                  >
                     Unpublish
-                  </p>
+                  </button>
                 ) : (
-                  <p className="ring-1 ring-gray-500 px-2 rounded-md flex justify-center">
-                    publish
-                  </p>
+                  <button
+                    className="ring-1 ring-gray-500 px-2 rounded-md flex justify-center "
+                    onClick={() =>
+                      handleSwitchPublishStatus(
+                        articleItem._id,
+                        articleItem.is_published
+                      )
+                    }
+                  >
+                    Publish
+                  </button>
                 )}
               </td>
             </tr>
