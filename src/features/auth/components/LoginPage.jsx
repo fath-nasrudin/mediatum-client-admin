@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../utilities/auth/AuthProvider';
+import { useAuth } from '../AuthProvider';
 
 function InputGroup({ name, value, onChange, type = 'text', required }) {
   return (

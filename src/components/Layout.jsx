@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../utilities/auth/AuthProvider';
+import { useAuth } from '../features/auth/AuthProvider';
 
 function Header() {
   const { user, logoutAction } = useAuth();

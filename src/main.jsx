@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import AuthProvider, { useAuth } from './utilities/auth/AuthProvider.jsx';
-import LoginPage from './pages/LoginPage.jsx';
-import ProtectedRoute from './utilities/auth/ProtectedRoute.jsx';
+import AuthProvider, { useAuth } from './features/auth/AuthProvider.jsx';
+import LoginPage from './features/auth/components/LoginPage.jsx';
+import ProtectedRoute from './features/auth/ProtectedRoute.jsx';
 import Layout from './components/Layout.jsx';
-import ArticleListPage from './pages/ArticleListPage.jsx';
+import ArticleListPage from './features/articlelist/components/ArticleListPage.jsx';
 
 const pagesWithLayout = [
   {
