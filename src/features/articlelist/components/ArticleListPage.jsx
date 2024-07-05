@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../auth/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const getArticlelist = async (options = {}) => {
   const { token } = options;
@@ -49,6 +50,11 @@ function ArticleListPage() {
     fetchArticlelist();
   }, []);
 
+  // create articlename
+  const generateArticleName = (title, id) => {
+    return title.split(' ').join('-') + '-' + id;
+  };
+
   return (
     <div className="p-4">
       <table className="w-full">
@@ -56,10 +62,17 @@ function ArticleListPage() {
           {articleList?.items?.map((articleItem) => (
             <tr key={articleItem._id} className="ring-1 p-2">
               <td className="ring-1 px-2 flex gap-2">
+                <Link
+                  to={`/articles/${generateArticleName(
+                    articleItem.title,
+                    articleItem._id
+                  )}`}
+                >
+                  <button className="px-2 ring-1 rounded-md bg-blue-300">
+                    Edit
+                  </button>
+                </Link>
                 <button className="px-2 ring-1 rounded-md bg-red-300">
-                  Edit
-                </button>
-                <button className="px-2 ring-1 rounded-md bg-blue-300">
                   Delete
                 </button>
               </td>
