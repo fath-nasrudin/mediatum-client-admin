@@ -10,6 +10,13 @@ function ProtectedRoute({ children }) {
     if (!user) {
       navigate('/login');
     }
+
+    if (!user.is_admin) {
+      throw new Response('Forbidden', {
+        status: 403,
+        statusText: 'Forbidden',
+      });
+    }
   }, []);
 
   return <div>{children}</div>;
