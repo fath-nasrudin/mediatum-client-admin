@@ -10,6 +10,7 @@ import Layout from './components/Layout.jsx';
 import ArticleListPage from './features/articlelist/components/ArticleListPage.jsx';
 import ArticleEditPage from './features/articlelist/components/ArticleEditPage.jsx';
 import ArticleAddPage from './features/articlelist/components/ArticleAddPage.jsx';
+import ArticleDeletePage from './features/articlelist/components/ArticleDeletePage.jsx';
 
 const pagesWithLayout = [
   {
@@ -27,6 +28,10 @@ const pagesWithLayout = [
   {
     path: 'articles/:articleName',
     element: <ArticleEditPage />,
+  },
+  {
+    path: 'articles/:articleName/delete',
+    element: <ArticleDeletePage />,
   },
 ];
 

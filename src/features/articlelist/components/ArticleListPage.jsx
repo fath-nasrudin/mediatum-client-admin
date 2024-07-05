@@ -72,9 +72,16 @@ function ArticleListPage() {
                     Edit
                   </button>
                 </Link>
-                <button className="px-2 ring-1 rounded-md bg-red-300">
-                  Delete
-                </button>
+                <Link
+                  to={`/articles/${generateArticleName(
+                    articleItem.title,
+                    articleItem._id
+                  )}/delete`}
+                >
+                  <button className="px-2 ring-1 rounded-md bg-red-300">
+                    Delete
+                  </button>
+                </Link>
               </td>
               <td className="ring-1 px-2">{articleItem.title}</td>
               <td className="ring-1 px-2">
