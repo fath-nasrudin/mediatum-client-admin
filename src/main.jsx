@@ -7,11 +7,16 @@ import AuthProvider, { useAuth } from './utilities/auth/AuthProvider.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import ProtectedRoute from './utilities/auth/ProtectedRoute.jsx';
 import Layout from './components/Layout.jsx';
+import ArticleListPage from './pages/ArticleListPage.jsx';
 
 const pagesWithLayout = [
   {
     path: '/',
     element: <App />,
+  },
+  {
+    path: 'articles',
+    element: <ArticleListPage />,
   },
 ];
 
