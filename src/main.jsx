@@ -9,6 +9,7 @@ import ProtectedRoute from './features/auth/ProtectedRoute.jsx';
 import Layout from './components/Layout.jsx';
 import ArticleListPage from './features/articlelist/components/ArticleListPage.jsx';
 import ArticleEditPage from './features/articlelist/components/ArticleEditPage.jsx';
+import ArticleAddPage from './features/articlelist/components/ArticleAddPage.jsx';
 
 const pagesWithLayout = [
   {
@@ -18,6 +19,10 @@ const pagesWithLayout = [
   {
     path: 'articles',
     element: <ArticleListPage />,
+  },
+  {
+    path: 'articles/create',
+    element: <ArticleAddPage />,
   },
   {
     path: 'articles/:articleName',
